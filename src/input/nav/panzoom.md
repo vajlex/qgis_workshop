@@ -1,5 +1,5 @@
 ---
-title: Toolbars
+title: Pan Zoom Identify
 layout: blank-two.html
 date: 2017-09-20 16:00
 collection: nav

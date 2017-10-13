@@ -1,7 +1,7 @@
 ---
 title: User Interface
 layout: blank-two.html
-date: 2017-09-20 16:00
+date: 2017-09-20 18:00
 collection: nav
 ---
 
@@ -10,8 +10,6 @@ collection: nav
 ## QGIS User Interface
 
 [![User Interface Tutorial for QGIS 2.10](../../assets/graf/YouTube_icon_sm.jpg)](https://www.youtube.com/watch?v=OsUKZeizKV4 "User Interface Tutorial Video")
-[![MangoMap Intro Tutorial Video](../../assets/graf/YouTube_icon_sm.jpg)](http://goo.gl/igc03E "MangoMap Intro Tutorial Video") 
-<br>CGA VIDEO  --   MANGOMAP VIDEO
 
 <hr>
 _**Launch QGIS**_

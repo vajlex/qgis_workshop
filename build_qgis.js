@@ -27,6 +27,11 @@ Metalsmith(__dirname)
     sortyBy: "date",
     reverse: true
   },
+  import: {
+    pattern: "import/*.md",
+    sortyBy: "date",
+    reverse: true
+  },
   qgis: {
     pattern: "*/*.md",
     sortyBy: "date",

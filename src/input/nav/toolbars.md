@@ -1,7 +1,7 @@
 ---
 title: Toolbars
 layout: blank-two.html
-date: 2017-09-20 16:00
+date: 2017-09-20 17:30
 collection: nav
 ---
 
@@ -33,7 +33,7 @@ You can move each TOOLBAR around on the TOOLBARS AREA. Click on the TOOLBAR hand
 <div class="maps"><img src="../../assets/graf/gui_10_toolbar.jpg"></div>
 
 ```
-Now the user interface will be reset. Notice that the number of items visible within a particular TOOLBAR depends on the available screen-size. Click on the double-right bracket at the right or bottom of any toolset to see the complete list of tools available for any toolbar.
+Now the user interface will be reset. Notice that the number of items visible within a particular TOOLBAR depends on the available screen-size. Click on the double-angle bracket symbol at the right or bottom of any toolset to see the complete list of tools available for any toolbar.
 ```
 
 <div class="maps"><img src="../../assets/graf/gui_11_toolbar.jpg"></div>

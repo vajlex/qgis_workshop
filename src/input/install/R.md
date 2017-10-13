@@ -1,7 +1,7 @@
 ---
 title: R Markdown Install
 layout: blank-two.html
-date: 2017-09-20 16:00
+date: 2017-09-20 12:00
 collection: install
 ---
 

@@ -1,7 +1,7 @@
 ---
-title: Toolbars
+title: Selection
 layout: blank-two.html
-date: 2017-09-20 16:00
+date: 2017-09-20 15:00
 collection: nav
 ---
 
@@ -44,96 +44,125 @@ Convenient selection options for working with attributes are: UNSELECT ALL, MOVE
 </div>
 
 ```
-Now the files for selection will be limited to the Shapefiles (ie, files with the .shp extension only).  Select the file containing Natural Earth countries called "ne_10m_admin_0_countries.shp"   Note on the filename:  this nomenclature is shorthand for Natural Earth, 1:10million scale, administrative unit boundaries, at the top level for the countries of the world.
+The TOGGLE EDIT button turns the editing mode on or off. This will also be reflected in the Map View, where vector features that can be edited will be highlighted. If the the number of features (and their vertices) is large, the red X marks for each editable vertex might turn into a blob of red, depending on the map scale.
 ```
-<div class="maps"><img src="../../assets/graf/file_types_shp_only.jpg">
+<div class="maps"><img src="../../assets/graf/attribute_table_edit_toggle.jpg">
+<br><img src="../../assets/graf/attribute_table_edit_mapview.jpg">
 </div>
 
 ```
-Once the .shp file appears in the Dataset form, you can click OPEN to add the vector layer to your QGIS project.
+When the EDIT MODE is ON, additional functions will be enabled in the attribute table options, for example: DELETE SELECTION, COPY SELECTION, DELETE COLUMN, INSERT NEW COLUMN, OPEN FIELD CALCULATOR. These options will be discussed in the EDIT section of this tutorial.
 ```
 
-<div class="maps"><img src="../../assets/graf/add_vec_open.jpg">
+<div class="maps"><img src="../../assets/graf/edit_tools.jpg">
 </div>
 
 ```
-By default when you add a vector layer to a blank project, the Map View will default to the Projection (CRS Coordinate Reference System) of the data being added, and it will zoom to the full spatial extent of the layer.
-In this case, the countries of the world, shown in a rectangular grid, which is perhaps the most common CRS, called WGS84.
+Click the EDIT TOGGLE button again, to exit the editing mode, and then DISCARD CHANGES. Right-click on a layer in the LAYER LIST, then select ZOOM TO LAYER EXTENT in order to see all the features of that layer in the MAP VIEW.
 ```
 
-<div class="maps"><img src="../../assets/graf/add_vec_extent.jpg">
+<div class="maps"><img src="../../assets/graf/zoom_to_layer2.jpg">
 </div>
 
 ```
-Now we will add another vector layer with the BROWSER PANEL.  In the Browser Panel navigate through the filesystem to find your Desktop and the qgis_workshop\mod_1 folder.  Then simply drag and drop a .shp file onto the Map View panel.  We will drag the file called "completed_route_to_poka.shp"
+The MAP VIEW should now be zoomed out to the extent at which all the features in the chosen layer are visible.  In this example, zoomed out to the extent of Egypt.
 ```
 
-<div class="maps"><img src="../../assets/graf/add_vec_drag.jpg">
+<div class="maps"><img src="../../assets/graf/zoom_to_layer_egypt.jpg">
 </div>
 
 ```
-You will see that the layer has been added because it appears in the Layers Panel.  Note that the Map View remains at the same extent, when additional layers are added to the Project.  In order to zoom to the new layer, RIGHT-CLICK on that layer in the layer list, and select the option Zoom to Layer.
+Now we will use the Main Menu to unselect the highlighted features. On the top menu click on VIEW, then move the mouse cursor down to SELECT, over to the right to in order to scroll down to the last item: DESELECT FEATURES FROM ALL LAYERS. Clicking on the command DESELECT FROM ALL LAYERS will remove the selection status in both the attribute table and the MAP VIEW.
 ```
 
-<div class="maps"><img src="../../assets/graf/add_vec_poka_extent.jpg">
+<div class="maps"><img src="../../assets/graf/unselect2.jpg"></div>
+
+```
+Now we will add a POINTS vector layer to the  project, this time add "egypt_gns_pts_utf-8.shp" using UTF-8 encoding.
+```
+<div class="maps"><img src="../../assets/graf/add_egypt_pts.jpg">
 </div>
 
 ```
-Now the Map View extent will be zoomed in to the extent of the "poka" layer.   
+Now there will be three layers in the LAYER LIST. Notice that the each new layer appears on top of the other layers in the list, so that the Points are on top of the polygons.
 ```
-<div class="maps"><img src="../../assets/graf/add_vec_zoom.jpg">
+
+<div class="maps"><img src="../../assets/graf/add_egypt_pts_top.jpg">
 </div>
 
 ```
-If it is not already active, make sure the MAP NAVIGATION TOOLBAR is active, then click on the PAN tool. Move the hand-shaped cursor over the MAP view, then click and drag to PAN the map. Letting go of the click button will set the MAP view the new position.
+Let's change the layer order, by clicking and dragging the bottom layer to the top of the stack in the LAYER LIST and letting go.
 ```
-<div class="maps"><img src="../../assets/graf/pan_hand.jpg">
+
+<div class="maps"><img src="../../assets/graf/drag_layer.jpg">
 </div>
 
 ```
-Now click the ZOOM tool. With the ZOOM tool active, both click and drag a box shape over an area of the map. Letting go of the click button will zoom into the extent of the selection.
+The top layer should now be shown "on top" of the MAP VIEW. Basically, the LAYER LIST order controls the drawing order for the layers, with the top-most layer in the LAYER LIST drawn last ON TOP of the others. By selecting the drawing order, transparency and symbolization, you can control exactly what you want to see on your map view.
 ```
 
-<div class="maps"><img src="../../assets/graf/zoom_icon.jpg">
+<div class="maps"><img src="../../assets/graf/top_layer_on.jpg">
 </div>
 
 ```
-Now make the ZOOM OUT tool active. Click any spot on the map view and the view will zoom out, centered on the selected point.
+Another way to control the layers shown in the MAP VIEW is to UNCHECK them in the LAYER LIST.  UNCHECK the top layer in the layer list and QGIS will not render the layer in the Map View.
+
+Now click on the SELECT tool as shown in step two below, to SELECT FEATURES BY RECTANGLE.  Try dragging a box on the Map View to select features. Because the TOP LAYER is the ACTIVE LAYER and is UNCHECKED you will see that NO features are selected.  Remember, only an ACTIVE Layer that is CHECKED in the Layer List can be found with the SELECT TOOL.
 ```
 
-<div class="maps"><img src="../../assets/graf/zoom_out.jpg">
+<div class="maps"><img src="../../assets/graf/top_layer_off.jpg">
 </div>
 
 ```
-To use the IDENTIFY tool, first right-click on the TOOLBAR AREA and make sure the ATTRIBUTES toolbar is active.  IMPORTANT NOTE:  You must make the layer ACTIVE for which you want to identify a feature!  So first click on the Natural Earth layer (ne_10m_admin_0_countries) in the Layers Panel
-Now you will can make the IDENTIFY tool active (a white letter "i" in a small blue circle) by clicking on that tool in the ATTRIBUTES Toolbar.
-Once the IDENTIFY tool is engaged, move your cursor to a spot on the MAP VIEW that has NOT got any features (a blank spot) and click on it. You will see a message in the lower left part of the STATUS BAR, "no features at this position found."  In addition, the IDENTIFY RESULTS panel will open on the right side of your MAP VIEW. 
+By default in QGIS, the IDENTIFY or SELECTION tools will return features from only the ACTIVE layer in the LAYER LIST. Now make the bottom layer ACTIVE by clicking on it (egypt_adm1). Drag a box over some features in the MAP VIEW. You will see that ONLY the features in the ACTIVE LAYER were selected and highlighted in yellow. Even though the points layer (egpyt_gns) is ON TOP of the the layer being selected from in the Layer List stack, the points layer is not the ACTIVE LAYER, so no point features were selected!
 ```
 
-<div class="maps"><img src="../../assets/graf/identify_empty.jpg">
+<div class="maps"><img src="../../assets/graf/select_rect.jpg">
 </div>
 
 ```
-Now try clicking on a area of the MAP VIEW that DOES have features in the ACTIVE layer. You should see a small pop-up window containing attribute information for the feature that was clicked on.
+Right-click on the ACTIVE LAYER and OPEN THE ATTRIBUTE TABLE. Click on the MOVE UP tool to see the highlighted rows that appeared on the map. Now you can see how the spatial selection in the map view can be used to discover all the attributes stored in the table. NOTE: the top line of the Attribute Table will always explicitly state the total number of features in the table, and how many rows are CURRENTLY SELECTED. In this example, there are 26 features total in the egypt_adm1 layer, and our spatial selection found 4 features.
 ```
-
-<div class="maps"><img src="../../assets/graf/identify_hit.jpg">
+<div class="maps"><img src="../../assets/graf/select_move_top.jpg">
 </div>
 
 ```
-Note that you might have to SCROLL to the right of the IDENTIFY RESULTS panel to see the attributes of the feature, in addition to the field names.
+Click the DESELECT FEATURES FROM ALL LAYERS tool.
 ```
-<div class="maps"><img src="../../assets/graf/identify_scroll.jpg">
+<div class="maps"><img src="../../assets/graf/unselect3.jpg">
 </div>
 
 ```
-Or you can POPUP the IDENTIFY RESULTS into a separate window to resize it and view both the field names and attributes, using the little POPUP toggle on the upper right.
+Now click on the points layer (egpyt_gns) in the LAYER LIST to make it active. Click on the SELECT BY RECTANGLE TOOL AGAIN, and drag a small box across the map view to select some point features. Note that in the map view ONLY the active layer point features were highlighted.
 ```
-<div class="maps"><img src="../../assets/graf/identify_float.jpg">
+
+<div class="maps"><img src="../../assets/graf/select_pts.jpg">
 </div>
 
 ```
-In the example shown, Turkey was IDENTIFIED.  To deselect the results, you can click the CLEAR RESULTS button at the top of the IDENTIFY RESULTS panel, or you can CLICK on an area where the ACTIVE LAYER has no features in the Map View.
+Now right-click on the points layer (egpyt_gns) in the LAYER LIST and OPEN ATTRIBUTE TABLE. Drag the horizontal scroolbar at the bottom of the table until you can see the placename columns. Note that our UTF-8 dataset is showing the Arabic placenames perfectly, one of the great aspects of QGIS! Reading the table details, we can see that in our example, we have selected 153 point features out of 20,004 total features in the points layer.
 ```
 
-**Proceed to the [SELECTION](../select) tutorial**
+<div class="maps"><img src="../../assets/graf/attribute_table_arabic.jpg">
+</div>
+
+```
+By default the Attribute Table is set to SHOW ALL FEATURES. This can toggled to other settings on the lower left side of the table. Click on the SHOW ALL ATTRIBUTES drop-down menu and then click SHOW SELECTED FEATURES. Now if you scroll down the table, you will only have 153 visible rows (rather than 20004) rows.
+```
+
+<div class="maps"><img src="../../assets/graf/attribute_table_toggle_selected.jpg">
+</div>
+
+
+<hr>
+
+**Proceed to the [QUERY BUILDER](../query) tutorial**
+
+<hr>
+_See also:  Layer Order, Identify and Select and  videos_
+
+![YouTube](../../assets/graf/YouTube_icon_sm.jpg "YouTube")</p>
+
+**LAYER ORDER** [QGIS 2.10, Youtube Video, 13m15s](https://www.youtube.com/watch?v=OsUKZeizKV4&t=9m28s)
+
+**IDENTIFY & SELECT** [QGIS 2.10, Youtube Video, 13m15s](http://www.youtube.com/watch?v=OsUKZeizKV4&t=9m56s)

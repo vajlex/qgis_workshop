@@ -146,6 +146,8 @@ margin-top: 10px;
 border-style: solid;
 border-width: 1px;
 border-color: #051094;
+clear: both;  
+}
 }
 
 
@@ -178,6 +180,10 @@ border-color: #051094;
 .plain-text {
   text-align: left;
   max-width: 860px;
+  margin-top: 10px;
+  float: left;
+  width: auto;
+  clear: both;  
 }
 
 .footer {
@@ -220,6 +226,8 @@ img.hover-image{
 pre {
   margin-top: 20px;
   margin-left: 15px;
+  margin-top: 20px;
+  clear: both;
   background-color: #f6cf9e;
   word-break: keep-all;
 }
@@ -233,4 +241,24 @@ pre {
     float: left;
     background-color: #FFAA99;
     border: 1px solid gray;
+    clear: both;
+}
+
+.text_anchor {
+    position: relative;
+    padding: 6px;
+    width: auto;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    float: left;
+    background-color: #80ff80;
+    border: 1px solid gray;
+    clear: both;
+}
+
+:target:before {
+content:"";
+display:block;
+height:90px; /* fixed header height*/
+margin:-90px 0 0; /* negative fixed header height */
 }
