@@ -1,0 +1,185 @@
+<html>
+ <head>
+  <meta charset="utf8">
+    <title>Batch Reprojection</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Harvard CGA QGIS 2.0 Workshop" />
+        <meta name="keywords" content="QGIS,Quantum GIS,training" />
+        <meta name="author" content="Lex Berman" />
+        <!-- core JS -->
+        <script src="../../assets/bootstrap/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>    
+        <!-- Bootstrap core CSS -->
+        <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+        <!-- chgis custom CSS must appear AFTER bootstrap-->
+        <link href="../../assets/css/qgis_2017.css" type="text/css" rel="stylesheet"> </head>
+<body>
+   <!-- navbar -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-xs" href="../../">QGIS WORKSHOP</a>
+            <a class="navbar-brand visible-xs" href="../../">QGIS WORKSHOP</a>
+         </div>
+         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../install/linux">Linux</a></li>
+                   <li><a href="../../install/mac">Mac OSX</a></li>
+                   <li><a href="../../install/R">R with QGIS</a></li>
+                   <li><a href="../../install/windows">Windows</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../basic/interface">User Interface</a></li>
+                   <li><a href="../../basic/toolbars">Toolbars</a></li>
+                   <li><a href="../../basic/panzoom">Pan Zoom Identify</a></li>
+                   <li><a href="../../basic/select">Selection</a></li>
+                   <li><a href="../../basic/query">Query Expressions</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task List<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../edit/vector_points">Edit: Vector Points</a></li>
+                   <li><a href="../../import/basemap">Import: Add Basemap</a></li>
+                   <li><a href="../../import/xy_from_csv">Import: X Y Points from CSV</a></li>
+                   <li><a href="../../import/wms">Import: WMS Layer</a></li>
+                   <li><a href="../../import/kml">Import: KML</a></li>
+                   <li><a href="../../import/georef">Import: Scanned Map</a></li>
+                   <li><a href="../../join/join_csv/">Join: Tabular Data</a></li>
+                   <li><a href="../../join/join_spatial/">Join: Spatial Join</a></li>
+                   <li><a href="../../projections/crs/">Projections: Coordinate Reference Systems</a></li>
+                   <li><a href="../../projections/batch_reproject/">Projections: Batch Reprojection</a></li>
+                 </ul>
+               </li>                    
+               <li><a href="../../data/">Data</a></li>
+               <li><a href="../../links/">Links</a></li>  
+            </ul>
+         </div>
+         <!--/.navbar-collapse -->
+      </div>
+   </div> 
+   <!-- /navbar -->
+ <div id="wrap">
+  <div class="chunk">
+    <article>
+    <h2 id="batch-reprojection-with-processing">Batch Reprojection with Processing</h2>
+<p><br><br>
+<img src="../../assets/graf/YouTube_icon_sm.jpg" alt="YouTube" title="YouTube"><br>
+<a href="https://www.youtube.com/watch?v=LdYg5iQZVPs"><em>Batch Reproject with QGIS 2.18</em></a></p>
+<p><strong>Overview</strong></p>
+<p>When you need to transform a whole batch of files at once, from one CRS to another, you can do so using the Processing Batch Script method.</p>
+<p>In this example, we had multiple data layers in WGS84 (EPSG 4326), and we needed to convert them to an equal area projection in order to run some spatial analysis functions.</p>
+<pre><code>1.  Add some example layers that you wish to transform
+2.  In this example we added three layers in WGS84 for various countries, called d1883, d1884, d1885
+3.  Double-check the properties of the layers to make sure their CRS is WGS84.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_2.jpg"></div>
+
+<pre><code>1. From the top Menu go to PROCESSING
+2. The Processing Panel will open on the right
+3. Type in the function that you want to use in the Search form of the Processing Toolbox:  Reproject
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_1.jpg"></div>
+
+
+<pre><code>1. In the PROCESSING Toolbox panel, you should see the function REPROJECT LAYER appear under the Geoalgorithms section
+2. Double-Click on the REPROJECT LAYER item
+3. The Reproject Layer Window will open 
+4. Click on the RUN AS A BATCH PROCESS button
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_3.jpg"></div>
+
+<pre><code>1. Click on the first row of the INPUT LAYERS with the ellipsis button (three dots ...)
+2. Choose &quot;Select from Open Layers&quot;
+3. A new window will open where you can CHECK all the layers that you want to INPUT into this batch process
+4. In our example, we check the three input layers.
+5. Click OK
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_4.jpg"></div>
+
+<pre><code>1.  Now widen the window to see the TARGET CRS and REPROJECTED parameters
+2.  Click on the Ellipsis button for TARGET CRS and set a new CRS that the existing layers will be TRANSFORMED into
+3.  Here we choose World Equidistant Cylindrical  (you can find it by looking for the EPSG number: 54002)
+4.  Click OK
+5.  Repeat the TARGET CRS step for the other INPUT files
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_5.jpg"></div>
+
+<pre><code>1.  Now go to set the REPROJECTED parameters
+2.  Click on the Ellipsis button for REPROJECTED and browse to the folder where you want to create the new layers after they are reprojected
+3.  Here we choose Desktop | proj | reproj 
+4.  Under Filename, create a syntax (a prefix) that you want to use for all the files in the batch
+5. In this example, we type &quot;reproj_&quot;
+6. Click SAVE
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_6.jpg"></div>
+
+<pre><code>1.  The AUTOFILL SETTINGS will appear
+2.  Reset the Autofill Mode to &quot;Fill with parameter values&quot;
+3.  Click OK
+4.  Note that the REPROJECTED target filenames will now be created, with the prefix &quot;reproj_&quot; concatenated to the original filenames.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_7.jpg"></div>
+
+<pre><code>1.  You may select to LOAD in QGIS or not, as the final parameter for the Batch Process
+2.  Click RUN
+3.  The progress of the batch will be indicated in the LOG tab that appears by default, after you click RUN
+4.  A small window will appear indicating when the process is completed, click OK
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_8.jpg"></div>
+
+<pre><code>1.  Click OK and CLOSE the Reproject Layer windows to see the results
+2.  Right click on one of the &quot;REPROJECTED Layers&quot; and check the PROPERTIES | GENERAL
+3.  The new CRS should be shown
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_9.jpg"></div>
+
+<pre><code>1.  Note the layer list will label all the newly projected layers with the same layer label &quot;Reprojected&quot; by default after the Batch Reproject process.   To prevent confusion, you can REMOVE those layers, and ADD VECTOR LAYER, to add the new layers in the proj/reproj folder
+2. Now let&#39;s try to set the PROJECT CRS to the same projection as the new layers
+3. Go to PROJECT | PROJECT PROPERTIES 
+4. In the CRS tab, set the projection to the NEW projection, such as EPSG 54002
+5. Hit APPLY and OK
+6. The datalayers should all be transformed in the MAP VIEW
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_10.jpg"></div>
+
+<pre><code>1. To make sure the transformation worked, go back to PROJECT | PROJECT PROPERTIES and UNCHECK the on the fly option
+2. ADD VECTOR DATA and add a duplicate layer of one of the newly projected layers
+3. the ON THE FLY transformation should TURN ITSELF BACK ON to handle the other layers that are still in WGS84
+4. Now once again go to PROJECT | PROPERTIES and UNCHECK the &quot;on the fly&quot; option
+5. This time the WGS84 Layers should no longer be auto-transformed.   The STATUS BAR CRS should be EPSG 54002, and ONLY our newly transformed layers should be visible.
+6.  Success.  You can batch reproject many files at once.   We have successfully run this on several hundred files at a time.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/reproj_11.jpg"></div>
+
+<p><br><br>
+<strong>Proceed to <a href="../../joins">Data Joins</a> Instructions</strong></p>
+
+    </article>
+   </div>
+ </div>
+
+        <div class="footer navbar-fixed-bottom">
+           <div class="text-center"><font size=-1>
+             <p>&copy; QGIS Workshop 2012 - <script>document.write(new Date().getFullYear())</script>
+             &nbsp; &nbsp;  hosted by: <a href="https://gis.harvard.edu" target="_new" title="Harvard Center for Geographic Analysis">CGA</a></font>
+             &nbsp; &nbsp;  author: <a href="http://www.gis.harvard.edu/people/merrick-lex-berman" target="_new">Lex Berman</a></font>
+             </p>
+           </div>
+        </div></body>
+</html>

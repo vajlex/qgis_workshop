@@ -1,0 +1,171 @@
+<html>
+ <head>
+  <meta charset="utf8">
+    <title>Add WMS Layer</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Harvard CGA QGIS 2.0 Workshop" />
+        <meta name="keywords" content="QGIS,Quantum GIS,training" />
+        <meta name="author" content="Lex Berman" />
+        <!-- core JS -->
+        <script src="../../assets/bootstrap/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>    
+        <!-- Bootstrap core CSS -->
+        <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+        <!-- chgis custom CSS must appear AFTER bootstrap-->
+        <link href="../../assets/css/qgis_2017.css" type="text/css" rel="stylesheet"> </head>
+<body>
+   <!-- navbar -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-xs" href="../../">QGIS WORKSHOP</a>
+            <a class="navbar-brand visible-xs" href="../../">QGIS WORKSHOP</a>
+         </div>
+         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../install/linux">Linux</a></li>
+                   <li><a href="../../install/mac">Mac OSX</a></li>
+                   <li><a href="../../install/R">R with QGIS</a></li>
+                   <li><a href="../../install/windows">Windows</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../basic/interface">User Interface</a></li>
+                   <li><a href="../../basic/toolbars">Toolbars</a></li>
+                   <li><a href="../../basic/panzoom">Pan Zoom Identify</a></li>
+                   <li><a href="../../basic/select">Selection</a></li>
+                   <li><a href="../../basic/query">Query Expressions</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task List<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../edit/vector_points">Edit: Vector Points</a></li>
+                   <li><a href="../../import/basemap">Import: Add Basemap</a></li>
+                   <li><a href="../../import/xy_from_csv">Import: X Y Points from CSV</a></li>
+                   <li><a href="../../import/wms">Import: WMS Layer</a></li>
+                   <li><a href="../../import/kml">Import: KML</a></li>
+                   <li><a href="../../import/georef">Import: Scanned Map</a></li>
+                   <li><a href="../../join/join_csv/">Join: Tabular Data</a></li>
+                   <li><a href="../../join/join_spatial/">Join: Spatial Join</a></li>
+                   <li><a href="../../projections/crs/">Projections: Coordinate Reference Systems</a></li>
+                   <li><a href="../../projections/batch_reproject/">Projections: Batch Reprojection</a></li>
+                 </ul>
+               </li>                    
+               <li><a href="../../data/">Data</a></li>
+               <li><a href="../../links/">Links</a></li>  
+            </ul>
+         </div>
+         <!--/.navbar-collapse -->
+      </div>
+   </div> 
+   <!-- /navbar -->
+ <div id="wrap">
+  <div class="chunk">
+    <article>
+    <h2 id="add-wms-layer-web-map-service-">Add WMS Layer (Web Map Service)</h2>
+<p><br><br>
+Web Map Services (<a href="http://en.wikipedia.org/wiki/Web_Map_Service">WMS</a>) are publicly available geospatial datasets that comply to an open protocol, allowing many different types of applications to consume them. 
+<br><br>
+Leaflet provides an <a href="http://leafletjs.com/examples/wms/wms.html">overview of working with WMS</a> in QGIS and adding WMS layers to Leaflet  Webmaps. 
+<br><br>
+In QGIS, adding WMS and WMTS (time enabled WMS) data layers can be done by clicking on a single Add Data button!  The problem is <em>finding</em> an active WMS Service to begin with.
+<br><br>
+USGS maintains a list of known WMS services for the United States <a href="https://viewer.nationalmap.gov/services/">National Map Service Endpoints</a>
+<br>
+For a global list of WMS services, you can find some working WMS endpoints in the index of <a href="http://hh.worldmap.harvard.edu/registry/">HHypermap</a>.<br><br>   In the tutorial below we will show:
+<br></p>
+<ol>
+<li>QGIS WMS server search</li>
+<li>Connecting to WMS service</li>
+<li>Adding WMS layer to QGIS Project</li>
+</ol>
+<pre><code>Before we add WMS, go to the Project Properties | CRS tab and set the projection to EPSG 3857.  You can find this by ticking the &quot;enable on the fly CRS transformation&quot; box at the upper left of CRS settings.  Then search for 3857 in the Filter box.  Hit OK.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/set_crs_3857.jpg"></div>
+
+<pre><code>Now go to the Manage Layers Toolbar, and click on the ADD WMS / WMTS button.   In the Add Layers from WM(T)S dialog:
+1. go to the SERVER SEARCH tab
+2. type in a search term, such as &quot;egypt&quot; then click SEARCH
+3. assuming you have some results below, click on a service, for example &quot;Aggregated Multipurpose Landocover&quot;
+4. then ADD SELECTED ROW TO WMS LIST.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/wms_server_search.jpg"></div>
+
+<pre><code>Now you should be back on the LAYERS tab, with the Service added to the list of available layers in the drop-down list.
+1. Choose the &quot;Aggregated Multipurpose Landcover&quot; layer then click CONNECT
+2. MOST OF THE TIME, the WMS service will fail to connect, or fail to find the WMS service
+</code></pre><div class="maps"><img 
+src="../../assets/graf/fail_connect_wms.jpg"></div>
+
+<pre><code>Failing to connect with the SERVER SEARCH, we can use Google to look for other options.  For example, I found a link to World Soil Information:
+</code></pre><p><a href="http://www.isric.org/">http://www.isric.org/</a></p>
+<pre><code>With a little digging, I found a Global Soils PH Levels WMS
+</code></pre><p><a href="https://goo.gl/f6wSzs">https://goo.gl/f6wSzs</a></p>
+<pre><code>On this page, you can find a link, with this description:
+This dataset is published in the view service (WMS) available at http://data.isric.org/geoserver/sg250m/wms? with layer name PHIHOX_M_sl1_250m.
+What we want is that GET CAPABILITIES URL (including the Question Mark ? at the end of the string):
+</code></pre><p><strong><a href="http://data.isric.org/geoserver/sg250m/wms?">http://data.isric.org/geoserver/sg250m/wms?</a></strong></p>
+<pre><code>Now we can try to add the WMS URL to our QGIS project:
+1. Click ADD WM(T)S Layer button
+2. In the LAYERS tab, click NEW
+3. Type a NAME for the new Layer
+4. Paste in the complete WMS URL
+5. click OK to add to the list
+</code></pre><div class="maps"><img 
+src="../../assets/graf/wms_server_new.jpg"></div>
+
+<pre><code>Now the Layers list will have a new item for the service we just added.  
+1. Select the new Service Name in the Drop-down list
+2. click CONNECT
+3. if the Service reponds, the list of available layers will be shown below.
+4. click on one of the layers, the click the ADD button
+</code></pre><div class="maps"><img 
+src="../../assets/graf/wms_server_connect_new.jpg"></div>
+
+<pre><code>If the service connects successfully, the WMS layer will be added, with it&#39;s preset symbolization.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/connect_wms_ok.jpg"></div>
+
+<pre><code>We can adjust the layer order (putting the Egyptian geonames points on top) and zoom in quite close.  Clicking on a point of interest with the Identify Tool, we can see the soil PH for a particular area of interest, and we can see that this is indeed a global layer of data at a resolution of 250m pixels.  So WMS can be an amazing way to share raster data!
+</code></pre><div class="maps"><img 
+src="../../assets/graf/wms_zoom.jpg"></div>
+
+<pre><code>However, if we right-click on our WMS layer in the Layers Panel, then go to PROPERTIES - STYLE tab, we will find that the symbolization options are frozen.  We will have ONLY the Render Type option of Singleband color data, and we will not be able to reclassify or stretch the color ramp at all.   WMS is a READ-ONLY version of the data.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/wms_style.jpg"></div>
+
+<p>See also:</p>
+<ol>
+<li><a href="http://www.northrivergeographic.com/qgiswms">Connect</a> to WMS in National Map.</li>
+<li><a href="http://www.qgistutorials.com/en/docs/working_with_wms.html">WMS tutorial</a> from Ujaval Gandhi.</li>
+</ol>
+<p><strong>Proceed to <a href="../kml">Add KML Layer</a> Instructions</strong></p>
+
+    </article>
+   </div>
+ </div>
+
+        <div class="footer navbar-fixed-bottom">
+           <div class="text-center"><font size=-1>
+             <p>&copy; QGIS Workshop 2012 - <script>document.write(new Date().getFullYear())</script>
+             &nbsp; &nbsp;  hosted by: <a href="https://gis.harvard.edu" target="_new" title="Harvard Center for Geographic Analysis">CGA</a></font>
+             &nbsp; &nbsp;  author: <a href="http://www.gis.harvard.edu/people/merrick-lex-berman" target="_new">Lex Berman</a></font>
+             </p>
+           </div>
+        </div></body>
+</html>

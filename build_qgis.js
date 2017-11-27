@@ -17,18 +17,38 @@ Metalsmith(__dirname)
     sortyBy: "date",
     reverse: true
   },
-  install: {
-    pattern: "install/*.md",
+  analysis: {
+    pattern: "analysis/*.md",
     sortyBy: "date",
     reverse: true
   },
-  nav: {
-    pattern: "nav/*.md",
+  basic: {
+    pattern: "basic/*.md",
+    sortyBy: "date",
+    reverse: true
+  },
+  edit: {
+    pattern: "edit/*.md",
     sortyBy: "date",
     reverse: true
   },
   import: {
     pattern: "import/*.md",
+    sortyBy: "date",
+    reverse: true
+  },
+  install: {
+    pattern: "install/*.md",
+    sortyBy: "date",
+    reverse: true
+  },
+  join: {
+    pattern: "join/*.md",
+    sortyBy: "date",
+    reverse: true
+  },
+    projections: {
+    pattern: "projections/*.md",
     sortyBy: "date",
     reverse: true
   },

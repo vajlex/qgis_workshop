@@ -1,0 +1,182 @@
+<html>
+ <head>
+  <meta charset="utf8">
+    <title>Add KML Layer</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Harvard CGA QGIS 2.0 Workshop" />
+        <meta name="keywords" content="QGIS,Quantum GIS,training" />
+        <meta name="author" content="Lex Berman" />
+        <!-- core JS -->
+        <script src="../../assets/bootstrap/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>    
+        <!-- Bootstrap core CSS -->
+        <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+        <!-- chgis custom CSS must appear AFTER bootstrap-->
+        <link href="../../assets/css/qgis_2017.css" type="text/css" rel="stylesheet"> </head>
+<body>
+   <!-- navbar -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-xs" href="../../">QGIS WORKSHOP</a>
+            <a class="navbar-brand visible-xs" href="../../">QGIS WORKSHOP</a>
+         </div>
+         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../install/linux">Linux</a></li>
+                   <li><a href="../../install/mac">Mac OSX</a></li>
+                   <li><a href="../../install/R">R with QGIS</a></li>
+                   <li><a href="../../install/windows">Windows</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../basic/interface">User Interface</a></li>
+                   <li><a href="../../basic/toolbars">Toolbars</a></li>
+                   <li><a href="../../basic/panzoom">Pan Zoom Identify</a></li>
+                   <li><a href="../../basic/select">Selection</a></li>
+                   <li><a href="../../basic/query">Query Expressions</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task List<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../edit/vector_points">Edit: Vector Points</a></li>
+                   <li><a href="../../import/basemap">Import: Add Basemap</a></li>
+                   <li><a href="../../import/xy_from_csv">Import: X Y Points from CSV</a></li>
+                   <li><a href="../../import/wms">Import: WMS Layer</a></li>
+                   <li><a href="../../import/kml">Import: KML</a></li>
+                   <li><a href="../../import/georef">Import: Scanned Map</a></li>
+                   <li><a href="../../join/join_csv/">Join: Tabular Data</a></li>
+                   <li><a href="../../join/join_spatial/">Join: Spatial Join</a></li>
+                   <li><a href="../../projections/crs/">Projections: Coordinate Reference Systems</a></li>
+                   <li><a href="../../projections/batch_reproject/">Projections: Batch Reprojection</a></li>
+                 </ul>
+               </li>                    
+               <li><a href="../../data/">Data</a></li>
+               <li><a href="../../links/">Links</a></li>  
+            </ul>
+         </div>
+         <!--/.navbar-collapse -->
+      </div>
+   </div> 
+   <!-- /navbar -->
+ <div id="wrap">
+  <div class="chunk">
+    <article>
+    <h2 id="add-kml-layer-google-kml-data-">Add KML Layer (Google KML Data)</h2>
+<p><br><br>
+KML and KMZ files (<a href="https://en.wikipedia.org/wiki/Keyhole_Markup_Language">Keyhole Markup Language</a>) are stored in an XML notation designed for visualizing and annotating geographic information.   </p>
+<p>KML is a &quot;flat text&quot; format which can be read and edited with an ordinary text editor.  KMZ is a compressed version of the KML to save disk space and transfer time.  In our exercise, we will prefer the KML format, which we can view and manipulate as needed.
+<br><br>
+The KML technology was purchased by Google in 2004, and became the main format used by the Google Earth application.  Since KML files can be created using the free (and relatively easy to use) Google Earth software, it has become quite popular. <br><br>
+However, there are some particular aspects of the KML notation that make it less than optimal for data entry, especially for the annotation of spatial features (aka &quot;placemarks&quot;) with attributes, as we expect to do in GIS.
+<br><br>In this module we will demonstrate the basic use of KML  in QGIS and a few tricks that will make it possible to store attributes (in a separate spreadsheet) and join them to the correct spatial features.
+<br><br></p>
+<pre><code>A quick search for KML of Egypt found some layers of Egyptian Pyramids.   Opening the KML file with GOOGLE EARTH shows the typical placemark symbols (pushpins) scattered along the Nile River
+</code></pre><div class="maps"><img 
+src="../../assets/graf/kml_pyramids.jpg"></div>
+
+<pre><code>Clicking on one of the placemarks brings up the &quot;Name&quot; and &quot;Description&quot; associated with that spatial feature.   For example, the placemark for Pyramid of Djoser, has a snippet of the Wikipedia entry.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/kml_pyramids_info.jpg"></div>
+
+<pre><code>This looks fine, and works perfectly in the context of Google Earth, but if you right-click on the Pyramid of Djoser feature in the Places list, and go to Properties, you will see the actual code that is stored in the two FIELDS
+1.  Name &quot;Pyramid of Djoser&quot;
+2.  Description  [all the embedded HTML from the Wikipedia page]
+</code></pre><div class="maps"><img 
+src="../../assets/graf/kml_pyramids_properties.jpg"></div>
+
+<pre><code>If we were to look at the actual KML file, in other words the XML document, we see that the situation is further complicated by the &quot;Description&quot; section being encapsulated within CDATA
+</code></pre><p><a href="https://en.wikipedia.org/wiki/CDATA">CDATA in XML</a></p>
+<div class="maps"><img 
+src="../../assets/graf/kml_cdata.jpg"></div>
+
+<pre><code>From this example, we can see that the &lt;name&gt; section is fairly straightforward, but that the &lt;description&gt; is problematic because it includes a great deal of &lt;div&gt; or &lt;span&gt; or other elements within the CDATA section.   It turns out that parsing this CDATA, without having an exact schema of the contents is not trivial.   
+
+Essentially these are the only free-text fields containing attributes related to the placemrk.  NAME, which is a simple string, and DESCRIPTION, which is also a text string, but is wrapped within CDATA section.
+
+Later in this module, we will make use of the NAME and DESCRIPTION fields in a way that makes them actually functional when importing into GIS. 
+
+But first, let&#39;s simply open the Pyramids file in QGIS to take a look at it.
+
+KML is considered a regular Vector format, so go to ADD VECTOR DATA and browse to your KML file, then change the encoding to UTF-8 and after you click BROWSE change the file format (on the lower right) to either Keyhole Markup, or All Files, in order to see your .kml file listed.  Then click OPEN and OPEN again.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/add_vector_kml.jpg"></div>
+
+<pre><code>You should now have the KML file opened, and you can adjust the symbolization, for example to red stars, by right-clicking on the KML layer and going to PROPERTIES - STYLE and setting the Marker Symbol and Color.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/kml_symbols.jpg"></div>
+
+<pre><code>Now right-click on the kml file in the Layers Panel and OPEN ATTRIBUTE TABLE.  You can see that the NAME field looks okay, but the DESCRIPTION field contains the entire text string that was found within the CDATA section.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/kml_attributes.jpg"></div>
+
+<pre><code>Basically, the purpose of examining the KML format and importing it into QGIS here, was to demonstrate that there is no reliable way to convert attributes that are stored in the DESCRIPTION field of KML into normalized fields in the QGIS attribute table.
+
+There is a trick, though!
+
+It is not to hard to see that the NAME field being stored with the placemark in KML is not being wrapped in CDATA, nor is it being parsed out of the CDATA section into text string when importing to QGIS.   
+
+Therefore, it is expedient to use the NAME field for Unique Identifiers, such as UNIQUE ID NUMBERS, and only put in a simple feature description in the DESCRIPTION field, such as the placename of the feature.  
+
+This is may seem counter-intuitive, but the method is simply something like:
+
+Name =  128
+Description =  Great Pyramid of Giza
+
+If we edit a version of the KML file this way, the Properties of the placemark will be quite readable.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/kml_revised.jpg"></div>
+
+<pre><code>Opening the revised KML in QGIS we can examine the ATTRIBUTE TABLE and see that use of DESCRIPTION field was fine for a SINGLE attribute, the Name of the place, and the NAME field preserved the UNIQUE ID NUMBER as a string.
+</code></pre><div class="maps"><img 
+src="../../assets/graf/kml_revised_table.jpg"></div>
+
+<pre><code>If we were to store other attributes and variables related to these spatial features in a table (Calc, CSV, etc), we could join them using the following steps;
+
+1. save the KML to Shapefile
+2. open the tabular data in QGIS using Add Vector Layer
+3. go to the Shapefile layer PROPERTIES - JOINS tab, and run the join, using the KML.Name field as the Unique Identifier for the Join.
+
+Jump ahead to the JOINS module for complete guide to Joins in QGIS.
+
+To sum up, the import of KML into QGIS is very simple, but the import will not be able to parse out multiple attributes saved into the &quot;Description&quot; field.
+
+Therefore, the recommended use of KML as a data entry tool is to store UNIQUE IDENTIFIERS in the &quot;Name&quot; field, and one textual attribute in the &quot;Description&quot; field.  
+
+Any additional attributes or variables related to specific Placemarks should be stored in a separate spreadsheet, using one UNIQUE IDENTIFIER for each row.  Finally the tabular data can be JOINED to the spatial features in QGIS.
+</code></pre><p><br></p>
+<p>See also:</p>
+<ol>
+<li><a href="http://www.northrivergeographic.com/qgiswms">Connect</a> to WMS in National Map.</li>
+<li><a href="http://www.qgistutorials.com/en/docs/working_with_wms.html">WMS tutorial</a> from Ujaval Gandhi.</li>
+</ol>
+<p><strong>Proceed to <a href="../georef">Georeferencing A Scanned Map</a> Instructions</strong></p>
+
+    </article>
+   </div>
+ </div>
+
+        <div class="footer navbar-fixed-bottom">
+           <div class="text-center"><font size=-1>
+             <p>&copy; QGIS Workshop 2012 - <script>document.write(new Date().getFullYear())</script>
+             &nbsp; &nbsp;  hosted by: <a href="https://gis.harvard.edu" target="_new" title="Harvard Center for Geographic Analysis">CGA</a></font>
+             &nbsp; &nbsp;  author: <a href="http://www.gis.harvard.edu/people/merrick-lex-berman" target="_new">Lex Berman</a></font>
+             </p>
+           </div>
+        </div></body>
+</html>

@@ -1,0 +1,307 @@
+<html>
+ <head>
+  <meta charset="utf8">
+    <title>Join CSV</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Harvard CGA QGIS 2.0 Workshop" />
+        <meta name="keywords" content="QGIS,Quantum GIS,training" />
+        <meta name="author" content="Lex Berman" />
+        <!-- core JS -->
+        <script src="../../assets/bootstrap/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>    
+        <!-- Bootstrap core CSS -->
+        <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+        <!-- chgis custom CSS must appear AFTER bootstrap-->
+        <link href="../../assets/css/qgis_2017.css" type="text/css" rel="stylesheet"> </head>
+<body>
+   <!-- navbar -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-xs" href="../../">QGIS WORKSHOP</a>
+            <a class="navbar-brand visible-xs" href="../../">QGIS WORKSHOP</a>
+         </div>
+         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../install/linux">Linux</a></li>
+                   <li><a href="../../install/mac">Mac OSX</a></li>
+                   <li><a href="../../install/R">R with QGIS</a></li>
+                   <li><a href="../../install/windows">Windows</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../basic/interface">User Interface</a></li>
+                   <li><a href="../../basic/toolbars">Toolbars</a></li>
+                   <li><a href="../../basic/panzoom">Pan Zoom Identify</a></li>
+                   <li><a href="../../basic/select">Selection</a></li>
+                   <li><a href="../../basic/query">Query Expressions</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task List<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../edit/vector_points">Edit: Vector Points</a></li>
+                   <li><a href="../../import/basemap">Import: Add Basemap</a></li>
+                   <li><a href="../../import/xy_from_csv">Import: X Y Points from CSV</a></li>
+                   <li><a href="../../import/wms">Import: WMS Layer</a></li>
+                   <li><a href="../../import/kml">Import: KML</a></li>
+                   <li><a href="../../import/georef">Import: Scanned Map</a></li>
+                   <li><a href="../../join/join_csv/">Join: Tabular Data</a></li>
+                   <li><a href="../../join/join_spatial/">Join: Spatial Join</a></li>
+                   <li><a href="../../projections/crs/">Projections: Coordinate Reference Systems</a></li>
+                   <li><a href="../../projections/batch_reproject/">Projections: Batch Reprojection</a></li>
+                 </ul>
+               </li>                    
+               <li><a href="../../data/">Data</a></li>
+               <li><a href="../../links/">Links</a></li>  
+            </ul>
+         </div>
+         <!--/.navbar-collapse -->
+      </div>
+   </div> 
+   <!-- /navbar -->
+ <div id="wrap">
+  <div class="chunk">
+    <article>
+    <h2 id="join-tabular-data-from-csv-file">Join Tabular Data from CSV File</h2>
+<p><p>
+<a href="https://www.youtube.com/watch?v=yjLA7D2ghZ4"><img src="../../assets/graf/YouTube_icon_sm.jpg" alt="Join CSV Video 18m6s" title="Join CSV Video 18m6s"></a></p>
+<div class="plain-text">
+ <ul>
+  <li><a href="#ovr">Overview</a></li>
+  <li><a href="#prep_id">Prepare Join IDs</a></li>
+  <li><a href="#prep_sp">Prepare Spatial Data</a></li>
+  <li><a href="#join">Join Operation</a></li>
+  <li><a href="#chk">Check Join Results</a></li>
+  <li><a href="#shp">Save to Shapefile</a></li><br> </ul>
+</div>
+
+<div class="text_anchor"><strong>Overview</strong><a id="ovr"></a></div>
+
+<pre><code>QGIS joins are temporary relationships between layers, or between tabular data (in .dbf or .csv formats) and spatial data layers. In this exercise we discuss preparation of the tabular data and the join process.
+</code></pre><div class="text_anchor"><strong>Prepare Join IDs</strong><a id="prep_id"></a></div>
+<div id="text_warn">
+Before considering any table joins, the most vital aspect to consider is the JOIN FIELD. The join field must contain matching values (in the same format, such as STRING or INTEGER) in both the source table and the target layer. Placenames are usually NOT the best choice, because duplicates, capitalization, blank spaces, or other variations in the exact spelling used in either table will introduce many errors. Ideally, you want to use UNIQUE IDENTIFIERS for the values in the join field rather than placenames. For geospatial data, there are many standardized encoding systems that we can use for identifiers related to administrative divisions, such as <a href="https://en.wikipedia.org/wiki/FIPS_county_code" target="_blank">FIPS</a> Codes, or Chinese <a href="https://en.wikipedia.org/wiki/Administrative_division_codes_of_the_People%27s_Republic_of_China" target="_blank">GBCODES</a>, European <a href="https://en.wikipedia.org/wiki/Nomenclature_of_Territorial_Units_for_Statistics" target="_blank">NUTS</a> codes, Japanese <a href="http://www.tt.rim.or.jp/~ishato/tiri/code/code.htm" target="_blank">JCODES</a>, and various other administrative coding systems.
+<br><br><a href="http://www.geonames.org/" target="_blank">Geonames</a> has also become a de-facto standard for encoding points of interest [POI] world-wide.  For example, the ID <a href="http://www.geonames.org/4944413" target="_blank">4944413</a> is permanently associated with the place: Montague, MA, USA. 
+<br><br>
+If you find that existing geographic codes do not work for your data, create your own set of UNIQUE IDs and don&#39;t alter them. Persistence of IDENTIFIERS help to keep your data organized and consistent.
+</div>
+<div class="gray-text">
+The following exercise uses data from:
+<br>
+1. <a href="http://maps.cga.harvard.edu/qgis/data/older_data/workshop_data_2016-02-26.zip">Workshop Data 2016-02-26 PART TWO</a> Taiwan
+</div>
+
+<div class="maps"><img src="../../assets/graf/join_csv_1.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+  <li>Use ADD VECTOR LAYER button to open the sample file <strong> /TW_pop_BIG5.csv </strong> in QGIS (with Encoding = BIG5)</li>
+  <li>Right-click on the layer in Layers Panel to Open Attribute Table</li>
+  <li>Inspect contents to see if they look correct (readable characters, and no mixed data types in columns)</li>
+  <li>Sort the intended JOIN FIELD (COUN_CODE) by Clicking on the Field Name (COUN_CODE) to make sure it does NOT have NULL values or blank cells</li>
+  <li>Close the Attribute Table and right click on the Layer, then go to PROPERTIES | FIELDS</li>
+  <li>Note the data TYPE for the JOIN FIELD (in this case QGIS imported the field as = String)</li>
+  <li>If STRING is not the desired format for the field, you can assign a specific data type to each field when using the CSVT (see the following section on CSVT files)</li>
+  </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_2.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+  <li>Now we will use a CSVT file to define field formats for a .csv file </li>
+  <li>In a text editor open the tutorial file: /TW_pop_BIG5.csvt</li>
+  <li>You should see a single line in the file, like the following:<br><strong>&quot;String(12)&quot;,&quot;String(20)&quot;,&quot;String(20)&quot;,&quot;String(40)&quot;,&quot;Integer(12)&quot;,&quot;Integer(12)&quot;,&quot;Integer(12)&quot;</strong></li>
+  </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_3.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+  <li>Note that some fields are defined as STRING and others as INTEGER </li>
+  <li>These can be modified to match the order and data types as they occur in any .csv file you want to import. In QGIS, when you add a .csv file that has an accompanying .csvt, it honors the formats defined in the .csvt! </li>
+  <li>Also note that each field definition is wrapped in double-quotes and separated by commas. No comma after the last field definition!</li>
+  <li>Make sure that the CSVT file is saved using the SAME FILENAME as the .csv file being defined.</li>
+  <li>In this example, we saved the file as -&gt; TW_pop_BIG5.csvt</li>
+  <li>Make sure the file extension is .csvt, not .txt or some other default extension.</li>
+   <li>More info on using csvt files <a href="http://goo.gl/vZmfp" target="_blank">here</a>.</li>
+    </ol>
+</div>
+
+<div id="text_warn">
+You may be tempted to open and view the .CSV table in EXCEL. Note, EXCEL may wreck the character set encoding of your files. An all-around excellent tabular data &amp; spreadsheet application is <a href="http://www.libreoffice.org/" target="_blank">LibreOffice</a> Calc, which is freeware and runs on Windows, Linux and Mac.  Like QGIS, the <strong>LibreOffice programs enable the selection of a codepage</strong>, both at the time of OPENING the file, and at the time of SAVING the file.</div>
+
+<div class="text_anchor"><strong>Prepare Spatial Data for the Join</strong><a id="prep_sp"></a></div>
+<div class="gray-text">
+Open the sample file: TW_pop_xian80.shp in QGIS (with Encoding = BIG5)</li>
+</div>
+<div class="maps"><img 
+src="../../assets/graf/join_csv_4.jpg"></div>
+<div class="gray-text">
+ <ol>
+   <li>Right-click on the layer in the Layer List and go to PROPERTIES | FIELDS</li>
+   <li>Note that there is only one field in the Shapefile, and that it is STRING data type</li>
+   <li>If both the tabular data in .CSV and the target spatial data layer have the same DATA TYPE for the JOIN FIED, then you can close the Attribute Table and proceed to the Join. </li>
+   <li>If the DATA TYPES are NOT the same, you can REMOVE the .csv table form the Layers List, RESET the field type in the CSVT file for the specific field, then re-open the .csv table in QGIS.   Changes in the CSVT should be seen in the Attribute Table of the .csv PROPERTIES | FIELDS.</li>
+  </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_5.jpg"></div>
+
+<div class="text_anchor"><strong>Join Operation</strong><a id="join"></a></div>
+<div class="gray-text">
+ <ol>
+  <li>The TARGET layer is the spatial data layer:  TW_pop_xian80 </li>
+  <li>The SOURCE DATA file is the tabular data layer: TW_pop_BIG5.csv, which contains attributes that we want to join to the spatial objects </li>
+  <li>Click on the TARGET Layer in the Layers Panel (TW_pop_xian80) to make it active, then right-click on that layer and select PROPERTIES</li>
+  <li>In the Properties window, click on the JOIN tab, then the PLUS Sign button to ADD a JOIN</li>
+  <li>For the JOIN LAYER, we select the SOURCE DATA .csv file (if you have many layers open, you will be able to select from the drop-down menu):  TW_pop_BIG5</li>
+  <li>For the JOIN FIELD, you choose the Field Name containing the JOIN ID in the JOIN LAYER, in this case COUN_CODE</li>
+  <li>For the TARGET FIELD, you choose the Field Name with the JOIN ID in the Spatial Data file, in this case also called COUN_CODE</li>
+  <li>Click OK, the APPLY to create the Join</li>
+ </ol>
+</div>
+<div class="maps"><img 
+src="../../assets/graf/join_csv_6.jpg"></div>
+
+<div class="text_anchor"><strong>Check Join Results</strong><a id="chk"></a></div>
+<div class="gray-text">
+ <ol>
+  <li>Right-click on the Target Layer (TW_pop_xian80) and Open Attribute Table</li>
+  <li>The table should now contain all the joined attributes </li>
+  <li>In addition the COUN_CODE field, the table now shows the columns joined from the .csv file</li>
+ </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_7.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+  <li><b>But there is a problem!</b></li>
+  <li>The Field Names generated by the join contain the Entire Filename of the SOURCE FILE, concatenated with the Source File Field Names.  So, we ended up with many fields that are quite long.  They can be seen if you drag the column width in the ATTRIBUTE TABLE view to expand each column horizontally </li> 
+   <li>Also, if you close the ATTRIBUTE TABLE, and go to examine the PROPERTIES | FIELDS of the Target Layer, you will see that the complete Field Names are there, such as:  TW_pop_BIG5_POP_2000</li>
+  </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_8.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+  <li>Note that ArcGIS Shapefiles have a defined FIELD NAME limit of ten characters.  Longer names can be held as an &quot;alias&quot; of the Field Name.  But when saving to Shapefile these may not be preserved.</li>
+  <li>One trick to get around this issue, is to RENAME both the .csv and the .csvt to a single letter filename.   For example:
+<br>TW_pop_BIG5.csv -&gt; renamed -&gt; J.csv
+<br>TW_pop_BIG5.csv -&gt; renamed -&gt; J.csvt
+</li> 
+   <li>To proceed with this operation, we first need to REMOVE THE JOIN by going to the target layer&#39;s PROPERTIES | JOINS tab and clicking the RED MINUS sign </li>
+  <li>Then click OK</li> 
+  </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_9.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+  <li>With the temporary Join removed in our QGIS Project, we can rename or save new copies of the .csv and .csvt files, as described above</li>
+  <li>Now add the new versions of the .csv SOURCE LAYER using the ADD VECTOR LAYER button</li> 
+   <li>Now you should have the tabular file in the Layers Panel:  J</li>
+  <li>Check the PROPERTIES | FIELDS of the J table to make sure the .csvt data type of STRING was correctly defined</li>
+  </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_10.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+  <li>Using the renamed J.csv file as the SOURCE LAYER, rerun the JOIN process</li>
+  <li>The newly joined Attribute Table will have the concatenation of the Filename, for example:  J_POP_2000
+</li> 
+   <li>Even within the constraints of 10 characters, this Field Name will not be truncated when saving to Shapefile</li>
+  </ol>
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/join_csv_11.jpg"></div>
+
+<div class="text_anchor"><strong>Save to Shapefile</strong><a id="shp"></a></div>
+<div class="gray-text">
+ <ol>
+<li>Note:  the JOIN is only a temporary relationship in QGIS.  You should SAVE THE JOINED LAYER to a new Shapefile before proceeding</li>
+  <li>Right-click on the TARGET LAYER in the Layers Panel, in the is case <b>tw_XIAN80</b>, then click SAVE AS
+</li> 
+  </ol>
+</div>
+<div class="maps"><img 
+src="../../assets/graf/join_csv_12.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+<li>In the SAVE VECTOR LAYER AS window, make sure you have the Format set to ESRI Shapefile</li>
+  <li>Click on BROWSE and select a Folder and Filename, in this case I typed in the Filename: tw_XIAN80_JOIN</li>
+  <li>CRS allows you to define the CRS for the new Shapefile.  In this case we can keep the original CRS, EPSG 2333</li> 
+  <li>Encoding allows you to custom define an encoding for the data layer Character Set, in this case we will keep the Chinese BIG5 encoding</li>
+  <li>Click OK to Save the new Shapefile</li>
+ </ol>
+</div>
+<div class="maps"><img 
+src="../../assets/graf/join_csv_13.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+<li>By default the New SAVED Shapefile should be added to the Layers Panel</li>
+  <li>Right-click on the new Layer tw_XIAN80_JOIN and check the Attribute Table</li>
+  <li>Now all the columns from the .csv file are part of the Shapefile, and not held in a temporary join</li> 
+  <li><b>Note:  It is important to save joins to Shapefiles in order to run many Spatial Analysis tools</b>.  Many processes will not work if you attempt to run them on data held in a temporary Join</li>
+ </ol>
+</div>
+<div class="maps"><img 
+src="../../assets/graf/join_csv_14.jpg"></div>
+
+<div class="gray-text">
+ <ol>
+<li>Close the ATTRIBUTE TABLE and Right-click on the new Layer tw_XIAN80_JOIN to view the PROPERTIES | FIELDS tab</li>
+  <li>You will see that, indeed, when we SAVED TO SHAPEFILE, the Field Names were truncated to ten characters!</li> 
+  <li><b>Our expedient of renaming the .csv file to J worked!</b>.</li>
+  <li>If we had NOT taken that step, when saving the Joined tabular data to a new Shapefile, the resulting field names would have been:  TW_pop_BIG for ALL of the Joined Columns.  Not very useful.  Hope you appreciate the trick of renaming the .csv file to ONE LETTER.</li>
+ </ol>
+</div>
+<div class="maps"><img 
+src="../../assets/graf/join_csv_15.jpg"></div>
+
+<div class="plain-text">
+<strong>Proceed to <a href="../join_spatial">Spaital Join</a> Instructions</strong></div>
+    </article>
+   </div>
+ </div>
+
+        <div class="footer navbar-fixed-bottom">
+           <div class="text-center"><font size=-1>
+             <p>&copy; QGIS Workshop 2012 - <script>document.write(new Date().getFullYear())</script>
+             &nbsp; &nbsp;  hosted by: <a href="https://gis.harvard.edu" target="_new" title="Harvard Center for Geographic Analysis">CGA</a></font>
+             &nbsp; &nbsp;  author: <a href="http://www.gis.harvard.edu/people/merrick-lex-berman" target="_new">Lex Berman</a></font>
+             </p>
+           </div>
+        </div></body>
+</html>

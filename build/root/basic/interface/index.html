@@ -1,0 +1,145 @@
+<html>
+ <head>
+  <meta charset="utf8">
+    <title>User Interface</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="Harvard CGA QGIS 2.0 Workshop" />
+        <meta name="keywords" content="QGIS,Quantum GIS,training" />
+        <meta name="author" content="Lex Berman" />
+        <!-- core JS -->
+        <script src="../../assets/bootstrap/js/jquery.min.js"></script>
+        <script src="../../assets/bootstrap/js/bootstrap.min.js"></script>    
+        <!-- Bootstrap core CSS -->
+        <link href="../../assets/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+        <script src="../../assets/bootstrap/js/ie10-viewport-bug-workaround.js"></script>
+        <!-- chgis custom CSS must appear AFTER bootstrap-->
+        <link href="../../assets/css/qgis_2017.css" type="text/css" rel="stylesheet"> </head>
+<body>
+   <!-- navbar -->
+     <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="container-fluid">
+         <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand hidden-xs" href="../../">QGIS WORKSHOP</a>
+            <a class="navbar-brand visible-xs" href="../../">QGIS WORKSHOP</a>
+         </div>
+         <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav navbar-right">
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Install<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../install/linux">Linux</a></li>
+                   <li><a href="../../install/mac">Mac OSX</a></li>
+                   <li><a href="../../install/R">R with QGIS</a></li>
+                   <li><a href="../../install/windows">Windows</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Basic<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../basic/interface">User Interface</a></li>
+                   <li><a href="../../basic/toolbars">Toolbars</a></li>
+                   <li><a href="../../basic/panzoom">Pan Zoom Identify</a></li>
+                   <li><a href="../../basic/select">Selection</a></li>
+                   <li><a href="../../basic/query">Query Expressions</a></li>
+                 </ul>
+               </li>
+              <li class="dropdown">
+                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">Task List<b class="caret"></b></a>
+                 <ul class="dropdown-menu">
+                   <li><a href="../../edit/vector_points">Edit: Vector Points</a></li>
+                   <li><a href="../../import/basemap">Import: Add Basemap</a></li>
+                   <li><a href="../../import/xy_from_csv">Import: X Y Points from CSV</a></li>
+                   <li><a href="../../import/wms">Import: WMS Layer</a></li>
+                   <li><a href="../../import/kml">Import: KML</a></li>
+                   <li><a href="../../import/georef">Import: Scanned Map</a></li>
+                   <li><a href="../../join/join_csv/">Join: Tabular Data</a></li>
+                   <li><a href="../../join/join_spatial/">Join: Spatial Join</a></li>
+                   <li><a href="../../projections/crs/">Projections: Coordinate Reference Systems</a></li>
+                   <li><a href="../../projections/batch_reproject/">Projections: Batch Reprojection</a></li>
+                 </ul>
+               </li>                    
+               <li><a href="../../data/">Data</a></li>
+               <li><a href="../../links/">Links</a></li>  
+            </ul>
+         </div>
+         <!--/.navbar-collapse -->
+      </div>
+   </div> 
+   <!-- /navbar -->
+ <div id="wrap">
+  <div class="chunk">
+    <article>
+    <h2 id="qgis-user-interface">QGIS User Interface</h2>
+<p><a href="https://www.youtube.com/watch?v=OsUKZeizKV4" title="User Interface Tutorial Video"><img src="../../assets/graf/YouTube_icon_sm.jpg" alt="User Interface Tutorial for QGIS 2.10"></a></p>
+<p><hr>
+<em><strong>Launch QGIS</strong></em></p>
+<div class="maps"><img src="../../assets/graf/ui_raw2.jpg"></div>
+
+<p><p></p></p>
+<ol>
+<li><p><strong>MENU BAR</strong> provides access to all the main functions and plugins</p>
+</li>
+<li><p><strong>TOOLBAR</strong> provides one-click common functions, and task-specific functions</p>
+</li>
+<li><p><strong>ADD DATA</strong> along the left side is the default location for the Manage Layers Toolbar</p>
+</li>
+<li><p><strong>LAYER LIST</strong> shows all data layers currently added to the project</p>
+</li>
+<li><p><strong>FILE BROWSER</strong> browse to geodata files and drag them onto the map canvas to open them</p>
+</li>
+<li><p><strong>MAP VIEW</strong> provides a dynamic visualization of the active data layers that can be mapped</p>
+</li>
+<li><p><strong>STATUS BAR</strong> provides some vital information about the current project settings</p>
+</li>
+</ol>
+<p><hr></p>
+<p><p></p>
+<em><strong>Explore MENU BAR</strong></em></p>
+<p><p></p></p>
+<ol>
+<li><p><strong>PROJECT</strong> menu is for Opening, Saving, setting Project Properties (such as CRS), launching Print Composer, or saving quick image of map view</p>
+</li>
+<li><p><strong>EDIT</strong> menu is for adding, modifying, deleting spatial features within an editable data layer</p>
+</li>
+<li><p><strong>VIEW</strong> menu is for primary Pan, Zoom, Feature Selection, and Toolbar Controls</p>
+</li>
+<li><p><strong>LAYER</strong> menu is for Adding, Removing, Visibility of data layers, and for changing Layer Projections</p>
+</li>
+<li><p><strong>SETTINGS</strong> menu controls the basic Project settings, Project projection, Language Locale, &amp; other defaults</p>
+</li>
+<li><p><strong>PLUGINS</strong> menu lists the installed Plugins where you can Add or Remove Plugins</p>
+</li>
+<li><p><strong>VECTOR</strong> menu contains Table Manager, Topology Checker, and other useful tools (<em><strong>NOTE</strong></em>: <em>Most of the geoprocessing functions, like Buffer, Point in Polygon, Select by Location, etc have MOVED to the Processing menu</em>)</p>
+</li>
+<li><p><strong>RASTER</strong> menu is for Raster processing functions, such as Heatmap and Zonal Stats (more are enabled with GRASS)</p>
+</li>
+<li><p><strong>DATABASE</strong> menu provides basic import / export operations for databases that have ALREADY been connected using the Manage Layers Add Database buttons.</p>
+</li>
+<li><p><strong>WEB</strong> menu contains the OpenLayers Plugin, where many basemaps can be added (including OSM, Google, Bing, etc), and also has the TileLayer Plugin</p>
+</li>
+<li><p><strong>PROCESSING</strong> menu contains the TOOLBOX for running many geoprocessing tasks, the Model Builder for chaining tasks, and controls the additional scripts that can be run in QGIS such as Grass, Python, R, SAGA, etc.</p>
+</li>
+</ol>
+<p><strong>Proceed to <a href="../toolbars">TOOLBAR</a> Instructions</strong></p>
+
+    </article>
+   </div>
+ </div>
+
+        <div class="footer navbar-fixed-bottom">
+           <div class="text-center"><font size=-1>
+             <p>&copy; QGIS Workshop 2012 - <script>document.write(new Date().getFullYear())</script>
+             &nbsp; &nbsp;  hosted by: <a href="https://gis.harvard.edu" target="_new" title="Harvard Center for Geographic Analysis">CGA</a></font>
+             &nbsp; &nbsp;  author: <a href="http://www.gis.harvard.edu/people/merrick-lex-berman" target="_new">Lex Berman</a></font>
+             </p>
+           </div>
+        </div></body>
+</html>

@@ -186,6 +186,20 @@ clear: both;
   clear: both;  
 }
 
+.gray-text {
+  padding: 8px;
+  text-align: left;
+  max-width: 860px;
+  margin-top: 14px;
+  margin-bottom: 14px;
+  width: auto;
+  float: left;
+  background-color: #CCCCBB;
+  border: 1px solid gray;
+  clear: both;
+  line-height: 1.5;
+}
+
 .footer {
 
   width: 100%;
@@ -234,7 +248,7 @@ pre {
 
 #text_warn {
     position: relative;
-    padding: 6px;
+    padding: 8px;
     margin-top: 15px;
     width: auto;
     margin-bottom: 10px;
@@ -242,6 +256,7 @@ pre {
     background-color: #FFAA99;
     border: 1px solid gray;
     clear: both;
+    line-height: 1.5;
 }
 
 .text_anchor {
