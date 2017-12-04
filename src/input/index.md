@@ -23,9 +23,10 @@ permalink: false
  <button class="button">Intro Video Series</button>
 </form>
 </div>
-<br>
+
 <div class="plain-text">
 Website and contents by Lex Berman. If you have comments or corrections, please contact us at the links below.
-
-<p></p>Feel free to use the contents of this tutorial, the license is BY-NC Creative Commons <img src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png"></p>
+<p></p>Feel free to use the <a href="https://github.com/vajlex/qgis_workshop" target="_blank">contents of this tutorial</a>, the license is BY-NC Creative Commons <img src="http://i.creativecommons.org/l/by-nc/3.0/80x15.png"></p>
+If you need the older versions of this tutorial see:  <a href="http://maps.cga.harvard.edu/qgis_1-7/" target="_blank">1.7</a>  and <a href="http://maps.cga.harvard.edu/qgis_2/" target="_blank">2.0</a>
 </div>
+

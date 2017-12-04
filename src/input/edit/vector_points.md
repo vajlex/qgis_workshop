@@ -10,7 +10,14 @@ collection: edit
 
 <p>
 
-<div class="text_anchor"><strong>Turn on Digitizing Toolbar</strong><a id="prep_pts"></a></div>
+<div class="plain-text">
+ <ul>
+  <li>[Basic Editing](#basic)</li>
+  <li>[Snapping Options](#snap)</li>
+ </ul>
+</div>
+
+<div class="text_anchor"><strong>Turn on Digitizing Toolbar</strong><a id="basic"></a></div>
 <div class="gray-text">
  <ol>
   <li>Right-click on empty part of Toolbar Area</li>
@@ -117,6 +124,44 @@ src="../../assets/graf/edit_8.jpg"></div>
   If you are sure that the new edits are correct, click SAVE, which will OVERWRITE the layer with the newly edited version.   You will NOT be able to roll back, after SAVING the edits!
   <p>One method to control your editing process, is to SAVE A NEW version of the layer that will be edited, with a serial number or Timestamp in the filename.   By creating new files for each editing session, you can revert to previous versions in case of some emergency need to roll back.
 </div>
+
+
+<div class="text_anchor"><strong>Snapping Options</strong><a id="snap"></a></div>
+
+
+<div class="gray-text">
+The Snapping Options will set the parameters for editing of features so that they can align or "snap" to existing features in other vector layers.
+<br><br>Go to the main menu SETTINGS and OPTIONS, then DIGITIZING tab.
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/snap_1.jpg"></div>
+
+<div class="maps"><img 
+src="../../assets/graf/snap_2.jpg"></div>
+
+<div class="gray-text">
+On the DIGITIZING tab you can set various options related to digitizing new features. 
+<br><br>Let's look at the SNAPPING OPTIONS section.  See the options for DEFAULT SNAP MODE:  vertex, segment, vertex and segment, off
+<br><br>
+<b>vertex</b> option means that the cursor will "snap" to a specific vertex (or node) when it crosses the proximity set in the DEFAULT SNAPPING TOLERANCE.
+<br><b>segment </b> option means that the cursor will snap to the nearest line segment when it is within the distance of the DEFAULT  SNAPPING TOLERANCE.
+<br><b>vertex and segment</b> means that the cursor will snap to EITHER the nearest node or segment with the tolerance.
+<br><b>off</b> option is important in  cases where you want to freely edit new nodes without the cursor automatically snapping to any other existing nodes or segments.
+<br><br><b>Default Snapping Tolerance</b> is the distance of the buffer that you wish to set around existing nodes and segments, and is measured in PIXELS, or in MAP UNITS.  You can boost this tolerance distance UP or DOWN if you find that the snapping does not occur when you want it to, or occurs too often when you DON'T want it to (as opposed to simply turning the function OFF).
+</div>
+
+
+<div class="maps"><img 
+src="../../assets/graf/snap_3.jpg"></div>
+
+
+<div id="text_warn">
+When you are finished experimenting with Editing, click on the TOGGLE EDITING button (the Pencil Icon), which is located on the Digitizing Toolbar, or by right-clicking on the Layer being edited.   You will be asked to SAVE or DISCARD your edits.  If you choose DISCARD the edits will be ignored and the file will remain unchanged.
+</div>
+
+<div class="maps"><img 
+src="../../assets/graf/snap_4.jpg"></div>
 
 [![Editing Vectors Tutorial for QGIS 1.7](../../assets/graf/YouTube_icon_sm.jpg)](http://www.youtube.com/watch?v=vvuvmCOnpoM "Editing Vectors Tutorial QGIS 1.7")
 

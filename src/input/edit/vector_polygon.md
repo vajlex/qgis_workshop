@@ -6,119 +6,71 @@ collection: edit
 ---
 
 
-## Edit Vector Points Layer
+## Edit Vector Polygon Layer
 
 <p>
 
-<div class="text_anchor"><strong>Turn on Digitizing Toolbar</strong><a id="prep_pts"></a></div>
+<div class="plain-text">
+ <ul>
+  <li>[Basic Boundary Editing](#basic)</li>
+  <li>[Move Feature](#move)</li>
+ </ul>
+</div>
+
+<div class="text_anchor"><strong>Make a Layer Editable</strong><a id="basic"></a></div>
+
 <div class="gray-text">
- <ol>
-  <li>Right-click on empty part of Toolbar Area</li>
-  <li>Mouse down to CLICK on the Digitizing Toolbar</li>
-  </ol>
+<ol>
+ <li>Editing Polygons or Lines is similar to editing Point features, except that there will always be "segments" or "arcs" connecting the vertexes involved.
+ </li>
+ <li>Go to any POLYGON layer that you want to practice editing.   Right-click on the Layer in the Layers Panel and select TOGGLE EDITING.</li>
+ <li>Now the features in your layer will be EDITABLE and each vertex that comprises the edges of the polygon features will be overlayed with the RED X</li>
+</ol>
 </div>
 
 <div class="maps"><img 
-src="../../assets/graf/edit_1.jpg"></div>
+src="../../assets/graf/edit_poly_1.jpg"></div>
 
 <div class="gray-text">
-The Digitizing Tools will be GRAYED OUT until a layer is selected and is Editable
+<ol>
+ <li>Now engage the EDIT NODE TOOL
+ </li>
+ <li>Go to any vertex A, click and hold the mouse, then drag it to a new position B, then let go of the mouse click</li>
+ <li>Now the Vertex will have moved, and the POLYGON that it is part of will be re-shaped.  </li>
+</ol>
 </div>
 
 <div class="maps"><img 
-src="../../assets/graf/edit_2.jpg"></div>
+src="../../assets/graf/edit_poly_2.jpg"></div>
 
 <div id="text_warn">
-  You can use any point layer and polygon layer for this exercise.
+Note that by editing one polygon's edge, you have created a GAP, or an OVERLAP, when compared to the boundary of the ADJACENT POLYGON!   This "gap" or "sliver" will cause topological errors.  
+<br>To prevent these gaps, you would have to adjust the adjacent boundary to edge-match  each updated vertex position.
+<br>Typically this is accomplished by FIRST editing one polygon with the corrected boundary edge.  Then, after saving those edits, begin editing the ADJACENT polygons, one at a time, and using the TRACE tool to align the other polygon edges with the SHARED BOUNDARY.
+<br>TIP:  it is sometimes useful to delete vertices of a polygon, along the new edge to be created, before using the trace tool.
+<br>These editing functions take considerable practice to learn, just keep in mind that you can STEP BACKWARD when editing using the CTL-Z option, and you can DISCARD changeds when turning off the TOGGLE EDITING function, if needed.
 </div>
 
+
+<div class="text_anchor"><strong>Move a Polygon Feature</strong><a id="move"></a></div>
+
 <div class="gray-text">
+Occasionally it might be useful to move an entire feature to a new position (rather than adjusting one vertex at a time).
+
  <ol>
-  <li>First click on a POINTS layer in the Layers Panel to make it ACTIVE</li>
-  <li>Then right click on the Layer and scroll down to TOGGLE EDITING</li>
+  <li>First engage the MOVE FEATURE(S) tool</li>
+  <li>Click on the polygon feature that you want to move, and drag it to a new position, then release the mouse</li>
+  <li>The entire polygon will be "nudged" to the new position, without having touched the relative positions of any vertices that make up the boundary.</li>
   </ol>
 </div>
 
 <div class="maps"><img 
-src="../../assets/graf/edit_3.jpg"></div>
-
-
-<div class="gray-text">
- <ol>
-  <li>Now the Tools will be Clickable on the Digitizing Toolbar</li>
-  <li>The Layer in the Layers Panel will have an EDITABLE icon</li>
-  <li>Each Editable VERTEX will have a small RED X over it, indicating that it is possible to edit</li>
-  </ol>
-</div>
-
-<div class="maps"><img 
-src="../../assets/graf/edit_4.jpg"></div>
-
-
-<div class="gray-text">
- <ol>
-  <li>To begin editing POINTS, click on the EDIT NODE TOOL within the Digitizing Toolbar</li>
-  <li>Move the cursor over the POINT that you wish to edit and click on it</li>
-  <li>The point and "editable" RED X will turn into a RED SQUARE, which means the specific vertex, or node, is now engaged to be edited, or moved to a new position</li>
-  <li>Also note, a VERTEX EDITOR panel will appear when you have selected a vertex to EDIT, with the current x, y value of the vertex in the current Projection</li>
-    </ol>
-</div>
-
-<div class="maps"><img 
-src="../../assets/graf/edit_5.jpg"></div>
-
-<div class="gray-text">
- <ol>
-  <li>Click and HOLD on the POINT</li>
-  <li>The POINT will turn BLUE when it is engaged to be dragged to a new location</li>
-  <li>The Vertex Editor Panel will highlight the currently engaged Vertex</li>
-    </ol>
-</div>
-
-<div class="maps"><img 
-src="../../assets/graf/edit_6.jpg"></div>
-
-<div class="gray-text">
- <ol>
-  <li>Drag the point to the desired location and release the CLICK of the mouse</li>
-  <li>The POINT will relocate to the new location</li>
-  <li>The POINT will still be BLUE (as a temporary edit) until you click on another vertex to be edited
-  <li>Note that the X, Y coordinates in the Vertex Editor Panel will now be UPDATED to those of the new location</li>
-    </ol>
-</div>
-
-<div class="maps"><img 
-src="../../assets/graf/edit_7.jpg"></div>
-
-<div class="gray-text">
- <ol>
-  <li>Before continuing, you can ROLL BACK this edit by pressing both ctl-Z (both the CONTROL and the Z keys at the same time)</li>
-  <li>If you click ctl-Z, the POINT will revert back to its original position, and the X, Y values in the Vertex Editor will also be rolled back</li>
-  <li>Note that by using ctl-Z, the POINT will no longer be BLUE, but will roll back to the state of the RED X, meaning that the point is selectable and can be edited, but is not clicked on and engaged for moving, nor has it been moved to a new location
-    </ol>
-</div>
-
-<div class="maps"><img 
-src="../../assets/graf/edit_7.jpg"></div>
-
-<div class="gray-text">
- <ol>
-  <li>You can END the editing session at any time by CLICKING on the EDIT TOOL (the single Pencil icon)</li>
-  <li>If you have made any changes, you will be prompted as to whether these should be SAVED or DISCARDED</li>
-  <li>Clicking DISCARD will end the EDIT session and leave the active layer unchanged
-  </li>
- </ol>
-</div>
-
-<div class="maps"><img 
-src="../../assets/graf/edit_8.jpg"></div>
+src="../../assets/graf/edit_poly_3.jpg"></div>
 
 <div id="text_warn">
-  If you are sure that the new edits are correct, click SAVE, which will OVERWRITE the layer with the newly edited version.   You will NOT be able to roll back, after SAVING the edits!
-  <p>One method to control your editing process, is to SAVE A NEW version of the layer that will be edited, with a serial number or Timestamp in the filename.   By creating new files for each editing session, you can revert to previous versions in case of some emergency need to roll back.
+Keep in mind that MOVING FEATURES introduces the same shared boundary problems as editing vertices.
 </div>
 
-[![Editing Vectors Tutorial for QGIS 1.7](../../assets/graf/YouTube_icon_sm.jpg)](http://www.youtube.com/watch?v=vvuvmCOnpoM "Editing Vectors Tutorial QGIS 1.7")
 
 <div class="plain-text">
-**Proceed to [Vector Polygon](../vector_polygon) Editing Instructions**</div>
+See also:  [TOPOLOGY](https://docs.qgis.org/2.2/en/docs/gentle_gis_introduction/topology.html) in QGIS Documentation.</div>

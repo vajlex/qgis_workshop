@@ -150,13 +150,16 @@ clear: both;
 }
 }
 
-
-.plain img{
+.plain{
    display: block;
    float: left;
    margin-top: 42px;
    margin-left: 5px;
-   max-width: 500px;
+   max-width: 1000px;  
+}
+
+.plain img{
+   max-width: 100%;
 }
 
 .splash {
@@ -276,4 +279,15 @@ content:"";
 display:block;
 height:90px; /* fixed header height*/
 margin:-90px 0 0; /* negative fixed header height */
+}
+
+
+.dropdown-submenu {
+    position: relative;
+}
+
+.dropdown-submenu .dropdown-menu {
+    top: 0;
+    left: 100%;
+    margin-top: -1px;
 }
